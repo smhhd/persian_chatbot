@@ -3,6 +3,7 @@ from nltk.stem.lancaster import LancasterStemmer
 import numpy
 import tflearn
 import tensorflow
+from tensorflow.python.framework import ops
 from hazm import *
 import json
 import pickle
@@ -74,7 +75,7 @@ except:
         pickle.dump((words, labels, training, output), f)
 
 
-tensorflow.reset_default_graph()
+ops.reset_default_graph()
 
 net = tflearn.input_data(shape=[None, len(training[0])])
 net = tflearn.fully_connected(net, 8)
