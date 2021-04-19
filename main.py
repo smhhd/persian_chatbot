@@ -7,6 +7,7 @@ from tensorflow.python.framework import ops
 from hazm import *
 import json
 import pickle
+import os.path as pth
 
 stemmer = LancasterStemmer()
 
@@ -86,9 +87,9 @@ print(output, 'output')
 
 model = tflearn.DNN(net)
 
-try:
+if pth.isfile("model.tflearn.meta"):
     model.load("model.tflearn")
-except:
+else:
     # print(model, 'model')
     model.fit(training, output, n_epoch=100, batch_size=8, show_metric=True)
 
